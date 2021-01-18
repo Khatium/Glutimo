@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formProperty 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+<h1>Création</h1>
+
+{{ form_start(formProperty) }}
+
+{{ form_widget(formProperty) }}
+
+<button type="submit" class="btn btn-success">
+  {% if editMode %}
+    Enregister les modifs
+  {% else %}
+    Ajouter la propriétée
+    {% endif %}
+</button>
+
+{{ form_end(formProperty) }}
+
+{% endblock %}

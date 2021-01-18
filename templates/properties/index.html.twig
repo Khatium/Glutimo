@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PropertiesController!{% endblock %}
+
+{% block body %}
+
+<section class="properties row">
+
+  {% for property in properties %}
+  <div class="property col-4">
+    <h2>{{ property.title }}</h2>
+    <img src="{{ property.imagePrincipale }}" alt="">
+    <div class="property_content">
+      <p>{{ property.adresseNumero}} </br>
+      {{ property.adresseLibelle}} </br>
+      {{property.adresseCp}} {{property.adresseVille}}</p>
+      <p>{{ property.prix }}</p>
+      <p>{{ property.surface }}</p>
+      <p>{{ property.nombrePiece }}</p>
+      <p>{{ property.nombreParking }}</p>
+      <p>Created ad {{ property.createdAt | date('d/m/Y') }} à {{ property.createdAt | date('H:i')}}</p>
+      <a href="{{ path('property_show', {'id': property.id}) }}" class="btn btn-primary">Plus d'infos</a>
+    </div>
+  </div>
+{% endfor %}
+
+</section>
+
+{% endblock %}

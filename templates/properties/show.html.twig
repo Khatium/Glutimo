@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="show_property">
+  <h1>{{ property.title }}</h2>
+  <img src="{{ property.imagePrincipale }}" alt="">
+  <div class="property_content">
+    <h2>Adresse</h2>
+    <p>{{ property.adresseNumero}}
+    {{ property.adresseLibelle}} </br>
+    {{property.adresseCp}} {{property.adresseVille}}</p>
+    <h2>Propriétaire</h2>
+    <p>
+      Nom : {{ property.ownerLastname }}
+      <br> Prenom : {{ property.ownerFirstname}}
+      <br> Phone : {{ property.ownerPhone }}
+      <br> Email : {{ property.ownerEmail }}
+    </p>
+    <h2>Détails</h2>
+    <p>Prix : {{ property.prix }}</p>
+    <p>Surface : {{ property.surface }}</p>
+    <p>N° Pièces : {{ property.nombrePiece }}</p>
+    <p>N° Places de parking : {{ property.nombreParking }}</p>
+    <p>Offre enregistrée le : {{ property.createdAt | date('d/m/Y') }} à {{ property.createdAt | date('H:i')}}</p>
+    <h2> Description </h2>
+    <p>{{ property.description }}</p>
+    <h2>Images</h2>
+    <div class="container">
+      <div class="row">
+        {% for item in property.pictures %}
+          <div class="container col-4">
+            <img src="{{ item.url }}" class="img-fluid" alt="...">
+            <div class="title row">
+                <h5 class="text- col-6"> {{  item.name }}</h5>
+                <a href="{{ path('picture_delete', {'id_prop' : property.id, "id_pic" : item.id})}}" class="btn btn-success col-4">X</a>
+            </div>
+          </div>
+        {% endfor %}
+
+      </div>
+    </div>
+    <a href="{{ path('properties_edit', {'id': property.id}) }}" class="btn btn-primary">Modifier</a>
+    <a href="{{ path('properties_picturesAdd', {'id': property.id}) }}" class="btn btn-success">Ajouter des images</a>
+    <a href="{{ path('properties_delete', {'id': property.id}) }}" onclick="return confirm('are u sure?')" class="btn btn-secondary">Supprimer</a>
+  </div>
+</div>
+{% endblock %}

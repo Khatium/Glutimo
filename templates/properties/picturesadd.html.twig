@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formPictures 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+<h1>Ajouter une image</h1>
+
+{{ form_start(formPictures) }}
+
+{{ form_widget(formPictures) }}
+
+<button type="submit" class="btn btn-success">
+  Ajouter
+</button>
+
+{{ form_end(formPictures) }}
+
+{% endblock %}
